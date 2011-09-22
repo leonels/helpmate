@@ -1,0 +1,42 @@
+<% if @tickets_requested_by_me.count == 0 %>
+
+<p>No tickets found for this view.</p>
+
+<% else %>
+<table id="tickets">
+  <tr>
+    <th>#</th>
+    <th>Subject</th>
+    
+    <th>Status</th>
+    <th>Created at</th>
+    <th></th>
+  </tr>
+
+<% @tickets_requested_by_me.each do |ticket| %>
+  <tr class="<%= cycle("even", "odd") %>" >
+    <td><%= ticket.number %></td>
+
+
+    <% if can? :update, ticket %>
+      <td><%= link_to ticket.subject, edit_ticket_path(ticket) %></td>
+    <% elsif can? :show, ticket %>
+      <td><%= link_to ticket.subject, ticket %></td>
+    <% end %>
+
+    <td>
+    <% if ticket.ticket_status_id == 1 %>
+      <span class="open"><%= ticket.ticket_status.label %></span>
+    <% elsif ticket.ticket_status_id == 2 %>
+      <span class="solved"><%= ticket.ticket_status.label %></span>
+    <% end %>
+    </td>
+
+    <td><%= ticket.abbreviated_created_at %></td>
+
+    <td></td>
+  </tr>
+<% end %>
+</table>
+
+<% end %>

@@ -1,0 +1,17 @@
+<h2>Are you sure you want to delete this company?</h2>
+
+<p><strong><%= @company.name %></strong> will be deleted along with these people:</p>
+
+<% if @company.users.any? %>
+  <ul>
+    <% @company.users.each do |user| %>
+      <li><%= user.first_name %> <%= user.last_name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<hr />
+
+<span style="background-color:#F1F1F1;border:1px solid #CCCa; font-size:1.2em;padding:3px;"><%= link_to 'Yes, delete this company', @company, :method => :delete, :class => 'delete' %></span>
+or
+<%= link_to 'No, cancel', edit_company_path %>

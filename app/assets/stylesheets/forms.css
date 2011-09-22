@@ -1,0 +1,60 @@
+body#tickets input[type="text"], body#users input[type="text"], body#companies input[type="text"]{
+	font-size:14pt;
+	margin:5px 0;
+	padding:3px;
+}
+
+body#tickets textarea{
+	font-size:14pt;
+	padding:5px;
+}
+
+body#tickets select{
+	padding:2px 0;
+}
+
+body#tickets input[type="text"], body#tickets textarea, body#tickets select{
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+	border:1px solid #C3C3C3;
+	outline-color:#0033cc;
+}
+
+body#tickets input[type="text"], body#tickets textarea{
+	width:90%;
+}
+
+body#tickets input[type="text"]:focus, body#tickets textarea:focus{
+	background-color:#E8F3F8;
+}
+
+body#tickets input[type="submit"], body#users input[type="submit"], body#companies input[type="submit"]{
+	padding:3px;
+}
+
+body#tickets div.field{
+	padding:5px;
+}
+
+body#users table#add_user, body#companies table#add_company{
+	margin-top:20px;
+	width:550px;
+}
+
+body#users table#add_user td.label{
+	font-size:14px;
+	font-weight:bold;
+	width:100px;
+}
+
+body#companies table#add_company td.label{
+	font-size:14px;
+	font-weight:bold;
+	padding:3px 10px 0 0;
+	text-align:right;
+	width:150px;
+}
+
+span.not_editable, span.not_editable p{
+  font-size:14pt;
+}
+

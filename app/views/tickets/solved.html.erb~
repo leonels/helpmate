@@ -1,0 +1,1 @@
+<%= render 'solved_tickets' %>

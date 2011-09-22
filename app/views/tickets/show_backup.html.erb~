@@ -1,0 +1,91 @@
+<h1>
+  Ticket #<%= @ticket.id %>
+</h1>
+
+<p>
+  <b>Subject:</b><br />
+  <span style="font-size:1.5em;"><%= @ticket.subject %></span>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @ticket.description %>
+</p>
+
+<% unless @ticket.solution.blank? %>
+<p>
+  <b>Solution:</b>
+  <%= @ticket.solution %>
+</p>
+<% end %>
+
+<p><b>Ticket status:</b> <%= @ticket.ticket_status.label %></p>
+<p><b>Created at:</b> <%= @ticket.created_at.strftime("%B %d, %Y at %I:%M%P") %></p>
+
+<% unless @orders.empty? %>
+
+  <table style="background-color:#f1f1f1;">
+    <tr><th colspan="3" style="font-size:2em;">Parts</th></tr>
+    <tr><th style="text-align:left;">Name</th><th>Cost</th><th>Price</th></tr>
+      <% @orders.each do |order| %>
+        <% part = Part.find(order.part_id) %>
+        <tr>
+          <td><%= part.name %></td>
+          <td><%= number_to_currency(part.cost) %></td>
+          <td><%= number_to_currency(order.price) %></td>
+        </tr>
+      <% end %>
+  </table>
+<% end %>
+
+<p>
+  <b>Requestor:</b> <%= @ticket.requestor.full_name %><br />
+  <b>Title: </b> <%= @ticket.requestor.title %><br />
+  <b>Email: </b> <%= mail_to @ticket.requestor.email %>
+</p>
+
+<p>
+  <b>Company Info</b><br />
+  <%= @ticket.requestor.company.name %><br />
+  
+  <% unless @ticket.requestor.company.address_one.blank? %>
+    <%= @ticket.requestor.company.address_one %><br />
+  <% end %>
+
+  <% unless @ticket.requestor.company.address_two.blank? %>
+    <%= @ticket.requestor.company.address_two %><br />
+  <% end %>
+
+  <% unless @ticket.requestor.company.city.blank? %>
+    <%= @ticket.requestor.company.city %>
+  <% end %>
+
+  <% unless @ticket.requestor.company.state.blank? %>
+    <%= @ticket.requestor.company.state %>
+  <% end %>
+  
+  <% unless @ticket.requestor.company.zipcode.blank? %>
+    <%= @ticket.requestor.company.zipcode%>
+  <% end %>
+    
+  <br />
+  
+  <% unless @ticket.requestor.company.web_address.blank? %>
+    <%= @ticket.requestor.company.web_address %><br />
+  <% end %>
+  
+  <% unless @ticket.requestor.company.phone_number_office.blank? %>  
+    <%= @ticket.requestor.company.phone_number_office %><br />
+  <% end %>
+
+  <% unless @ticket.requestor.company.phone_number_fax.blank? %>
+    <%= @ticket.requestor.company.phone_number_fax %>
+  <% end %>
+</p>
+
+<% unless @ticket.solver_id.nil? %>
+  <p><b>Solver:</b> <%= @ticket.solver.first_name %> <%= @ticket.solver.last_name %></p>
+<% end %>
+  
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>

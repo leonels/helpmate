@@ -1,0 +1,60 @@
+<h1>Add an user to <%= Company.find(params[:company_id]).name %></h1>
+
+<%= form_for(@user, :url => company_users_path(@company)) do |f| %>
+
+<% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table cellpadding="0" cellspacing="0" id="add_user">
+    <tr>
+      <td class="label"><%= f.label :first_name %></td>
+      <td><%= f.text_field :first_name %></td>
+    </tr>
+    <tr>
+      <td class="label"><%= f.label :last_name %></td>
+      <td><%= f.text_field :last_name %></td>
+    </tr>
+  </table>
+  
+  <div class="field">
+    <b><%= f.label :first_name %></b><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+    
+  <div class="actions">
+    <%= f.submit 'Add this person', :disable_with => "Processing..." %> or <%= link_to 'Cancel', users_path %>
+  </div>
+  
+  <div>
+  	<h3>What happens now?</h3>
+  	<p>When you click the "Add this person" button, we'll fire off a nice invitation to the email address you entered above.
+  	The email will contain a link to a web page where this person will complete the setup process by picking their own username and password.</p>
+  </div>
+  
+  <div>
+  	<p>As soon as you submit this form, this person will receive a welcome email with a link to pick their own username and password.</p>
+  </div>
+<% end %>

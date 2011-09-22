@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= "#{Rails.application.class.parent_name}" %></title>
+  <%= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tag %>
+</head>
+<body id="<%= params[:controller] %>">
+
+<style>
+div#container {
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	-moz-box-shadow: 0 0 6px #999;
+	-webkit-box-shadow: 0 0 6px #999;
+	box-shadow: 0 0 6px #999;
+}
+</style>
+
+<div id="container" style="margin:50px auto 0 auto;padding:15px 40px;text-align:left;width:500px;">
+
+  <% if alert %>
+  <p id="alert"><%= alert %></p>
+  <% end %>
+
+  <% if notice %>
+  <p id="notice"><%= notice %></p>
+  <% end %>
+  
+  <%= yield %>
+  
+</div>
+
+</body>
+</html>

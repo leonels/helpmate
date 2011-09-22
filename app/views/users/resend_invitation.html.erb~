@@ -1,0 +1,16 @@
+<h3>Send <%= @user.first_name %> another invitation</h3>
+
+<p>
+You can send another invitation if <%= @user.first_name %> didn't receive the previous one.
+The invitation includes a link to set a username and password so <%= @user.first_name %> can sign in. 
+</p>
+
+<p>
+The last invitation was sent on <%= @user.invitation_last_sent_at.strftime("%B %e, %Y") %>.
+</p>
+
+<%= form_tag users_path do%>    
+  <div class="actions">
+    <%= submit_tag 'Send another invitation' %> or <%= link_to 'Cancel', edit_user_path, :class => 'cancel'  %>
+  </div>
+<% end %>

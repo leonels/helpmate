@@ -1,0 +1,14 @@
+<% if current_user.role.name == "customer" %>
+
+<h1>My submitted tickets</h1>
+<%= render 'my_submitted_tickets' %>
+
+<h1>Company tickets</h1>
+<%= render 'company_tickets' %>
+
+<% else %>
+
+<h1>Open tickets assigned to you: <%= pluralize(@tickets_assigned_count, 'open ticket', 'open tickets') %></h1>
+<%= render 'assigned_tickets' %>
+
+<% end %>

@@ -1,0 +1,31 @@
+<p>
+  <%
+  if f.object[:price].blank?
+  %>
+    <h1>id <%= the_id = f.object[:part_id] %></h1>
+    <% a = Part.find_by_id(the_id) %>
+    <%= debug a %>
+  <%
+  end
+  %>
+
+  <%= 
+  #  f.label :part_id, "Part"
+  %>
+  <%= f.collection_select :part_id, @parts, :id, :cost_and_name, :prompt => "Select" %>
+  
+  <div class="field">
+    <%= f.label :price %> (if different than listed price)
+    $<%= f.text_field :price, :value => "#{f.object[:price]}", :size => 6 %>
+  </div>
+  
+  <% unless f.object[:part_id].nil? %>
+    <%= f.check_box :_destroy %>
+    <%= f.label :_destroy, "Remove part" %>
+  <% end %>
+  
+  <hr />
+  
+</p>
+
+

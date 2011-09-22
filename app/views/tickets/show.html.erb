@@ -1,0 +1,54 @@
+<div id="ticket_content_left">
+
+<h1>Subject: <%= @ticket.subject %></h1>
+
+<div class="description">
+<b>Description</b>
+<p class="description">
+  <%= @ticket.description %>
+</p>
+</div>
+
+<% unless @ticket.solution.blank? %>
+<p>
+  <b>Solution:</b>
+  <%= @ticket.solution %>
+</p>
+<% end %>
+
+<p>  <span class="status <%= @ticket.ticket_status.label.downcase %>"><b>Status:</b> <%= @ticket.ticket_status.label %></span></p>
+
+<p style="color:#CCC;">
+<span class="ticket_number">Ticket #<%= @ticket.number %></span> | <span class="requester">Requester: <%= @ticket.requestor.abbreviated_name %></span> | <span class="created">Created: <%= @ticket.abbreviated_created_at %></span>
+<% unless @ticket.solved_at == nil %>
+  | <span class="created">Solved: <%= @ticket.abbreviated_solved_at %></span>
+  <% end %>
+</p>
+
+<% unless @orders.empty? %>
+
+  <table style="background-color:#f1f1f1;">
+    <tr><th colspan="3" style="font-size:2em;">Parts</th></tr>
+    <tr><th style="text-align:left;">Name</th><th>Cost</th><th>Price</th></tr>
+      <% @orders.each do |order| %>
+        <% part = Part.find(order.part_id) %>
+        <tr>
+          <td><%= part.name %></td>
+          <td><%= number_to_currency(part.cost) %></td>
+          <td><%= number_to_currency(order.price) %></td>
+        </tr>
+      <% end %>
+  </table>
+<% end %>
+
+<% unless @ticket.solver_id.nil? %>
+  <p><b>Solver:</b> <%= @ticket.solver.first_name %> <%= @ticket.solver.last_name %></p>
+<% end %>
+
+<!--
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>
+-->
+</div>
+
+<%= render 'requester_info' %>

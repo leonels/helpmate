@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= "#{Rails.application.class.parent_name}" %></title>
+  <%= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tag %>
+</head>
+<body id="<%= params[:controller] %>" >
+
+<div id="header_container" style="background-color:#222;">  
+  <div id="header">
+    <h1 id="app_title" style="color:white;">Helpmate</h1>
+  </div>
+</div>
+
+
+<div id="container" style="border:1px solid #CCC;margin-top:20px;padding:0;width:700px;">
+  
+  <% if alert %>
+  <p id="alert"><%= alert %></p>
+  <% end %>
+
+  <% if notice %>
+  <p id="notice"><%= notice %></p>
+  <% end %>
+  
+<%= yield %>
+
+</div>
+
+</body>
+</html>

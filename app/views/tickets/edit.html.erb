@@ -1,0 +1,107 @@
+<div id="ticket_content_left">
+<h1>Ticket #<%= @ticket.number %></h1>
+
+
+
+
+
+<%= form_for(@ticket) do |f| %>
+  <% if @ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+      <% @ticket.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if current_user.role.name == 'account owner' %>
+      <b><%= f.label :subject %></b><br />
+      <%= f.text_field :subject %>
+    <% else %>
+      <b>Subject</b><br />
+      <span class="not_editable"><%= @ticket.subject %></span>
+    <% end %>
+  </div>
+  
+  
+  <% unless current_user.role.name == 'customer' %>
+  <div class="field_group" style="clear:both;width:100%;">
+		
+		<div class="field" style="float:left;margin-right:10px;width:auto;">
+			<b><%= f.label :ticket_status_id, 'Status' %></b><br />
+			<%= f.collection_select :ticket_status_id, @ticket_statuses, :id, :label, :prompt => "Select" %>
+		</div>
+
+    <% @requestors = [] %>
+    <% @companies.each do |company| %>
+      <% @users_add = User.all(:order => 'first_name', :conditions => ["company_id == ?", company.id]) %>
+      <% @requestors = @requestors + @users_add %>
+    <% end %>
+    <div class="field" style="float:left;margin-right:10px;width:auto;">
+			<b><%= f.label :requestor_id %></b><br />
+			<%= f.collection_select :requestor_id, @requestors, :id, :full_name_and_company, :include_blank => "Select" %>
+		</div>
+
+		<div class="field" style="float:left;margin-right:10px;width:auto;">
+      <% if current_user.role.name == 'account owner' or current_user.role.name == "manager" %>
+			  <b><%= f.label :assignee_id %></b><br />
+			  <%= f.collection_select :assignee_id, @assignees, :id, :full_name, :prompt => "Select" %>
+			<% else %>
+			  <b>Assignee</b><br />
+			  <% if @ticket.assignee.nil? %>
+			    <span class="not_editable">Unassigned</span>
+			  <% else %>
+          <span class="not_editable"><%= @ticket.assignee.full_name %></span>
+        <% end %>
+			<% end %>
+		</div>
+
+    <div class="field" style="float:left;width:auto;">
+      <% if current_user.role.name == 'account owner' or current_user.role.name == "manager" %>
+			  <b><%= f.label :solver_id %></b><br />
+			  <%= f.collection_select :solver_id, @assignees, :id, :full_name, :prompt => "Select" %>
+			<% else %>
+			  <% unless @ticket.solver_id.nil? %>
+			    <b>Solver</b><br />
+			    <span class="not_editable"><%= @ticket.solver.full_name %></span>
+			  <% end %>
+			<% end %>
+		</div>
+
+  </div>
+  <% end %>
+
+  <div class="field" style="clear:both;">
+    <% if current_user.role.name == 'account owner' %>
+      <b><%= f.label :description %></b><br />
+      <%= f.text_area :description, :rows => 6, :cols => 40 %>
+    <% else %>
+      <b>Description</b><br />
+      <span class="not_editable" style="background-color:#F1F1F1;display:block;padding:5px;width:90%;"><%= simple_format @ticket.description %></span>
+    <% end %>
+  </div>
+
+  <p style="color:#CCC;"><span class="ticket_number">Ticket #<%= @ticket.number %></span> | <span class="created">Created: <%= @ticket.abbreviated_created_at %></span> 
+  <% unless @ticket.solved_at == nil %>
+  | <span class="created">Solved: <%= @ticket.abbreviated_solved_at %></span>
+  <% end %>
+  </p>
+  
+  <div class="actions">
+    <%= f.submit :disable_with => "Processing..." %> or <%= link_to 'Cancel', tickets_path, :class => "cancel"  %>
+  </div>
+<% end %>
+
+
+
+
+
+
+</div>
+
+<%= render 'requester_info' %>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ProficioDesk</title>
+  <%= stylesheet_link_tag :all %>
+  <%=
+    javascript_include_tag :defaults
+  %>
+  <%=
+    # javascript_include_tag 'jquery-1.6.2.min.js' , 'application'
+  %>
+  <%= csrf_meta_tag %>
+</head>
+<body id="<%= params[:controller] %>" >
+
+<div id="header_container">
+  <% if current_user %>
+    <ul id="account_navigation">
+      <li>Signed in as <%= current_user.username %> ( <%= current_user.role.name %> )</li>
+      <li><a href="/companies/<%= current_user.company_id %>">Company Info</a></li>
+      <li><a href="/users/<%= current_user.id %>/edit">My Info</a></li>
+      <li><%= link_to 'Log out', log_out_path %></li>
+    </ul>
+  <% end %>
+  
+  <div id="header">
+    <h1 id="app_title">ProficioDesk</h1>
+  </div>
+
+  <% if current_user %>
+    <ul id="main_navigation">
+      <li id="first" class="dashboard"><%= link_to 'Dashboard', root_url %></li>
+      <li id="tickets" class="tickets"><%= link_to 'Tickets', tickets_url %></li>
+      <li id="parts" class="parts"><%= link_to 'Parts', parts_url %></li>
+      <li class="users"><a href="/users">People</a></li>
+      <% if can? :show, Account %>
+        <li class="accounts"><a href="/accounts/<%= current_user.company.account_id %>">Account (Upgrade/Invoices)</a></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<div id="container">
+
+  <% if alert %>
+  <p id="alert"><%= alert %></p>
+  <% end %>
+
+  <% if notice %>
+  <p id="notice"><%= notice %></p>
+  <% end %>
+  
+<%= yield %>
+
+	<% unless current_user %>
+			<%= link_to 'Sign up', sign_up_path %> or <%= link_to 'log in', log_in_path %>
+	<% end %>
+
+</div>
+
+<div id="footer"><a href="http://proficiodesk.com" target="_blank">Proficio Support Ticket System</a> by <a href="http://www.leonelonrails.com" target="_blank">LeonelOnRails</a></div>
+
+</body>
+</html>

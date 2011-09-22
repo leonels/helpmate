@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Genesis</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body id="<%= params[:controller] %>" style="">
+
+<style>
+div#container{
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	-moz-box-shadow: 0 0 6px #999;
+	-webkit-box-shadow: 0 0 6px #999;
+	box-shadow: 0 0 6px #999;
+}
+</style>
+
+<div id="container" style="margin:150px auto 0 auto;padding:15px 40px;text-align:center;width:700px;">
+
+  <% if alert %>
+  <p id="alert"><%= alert %></p>
+  <% end %>
+
+  <% if notice %>
+  <p id="notice"><%= notice %></p>
+  <% end %>
+  
+  <div id="content" style="text-align:left;">
+  <%= yield %>
+  </div>
+  
+</div>
+
+</body>
+</html>

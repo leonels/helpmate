@@ -1,0 +1,10 @@
+<div id="ticket_content_right">
+<h2>Browse Tickets</h2>
+<ul>
+  <li><a href="/assigned">Assigned to me</a></li>
+  <li><a href="/tickets">All</a></li>
+  <li><a href="/open">Open</a></li>
+  <li><a href="/solved">Solved</a></li>
+  <li><a href="/unassigned">Unassigned</a></li>
+</ul>
+</div>

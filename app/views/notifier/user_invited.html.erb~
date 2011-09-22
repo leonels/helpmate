@@ -1,0 +1,13 @@
+<p style="font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.3em;text-align:left;"><%= @user.company.name %></p>
+
+<h1 style="color:#222;font-family: Helvetica, Arial, sans-serif;font-size:22px;line-height:normal;">You're invited to join <%= "#{Rails.application.class.parent_name}" %></h1>
+
+<p style="font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.3em;text-align:left;">Hi <%= @user.first_name %>,</p>
+
+<p style="font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.3em;text-align:left;"><%= @user.account_owner %> just set up an account for you. All you need to do is choose a username and password.
+It only takes a few seconds.</p>
+
+<p style="font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.3em;text-align:left;"><strong>Click this link to get started:</strong><br />
+<a href="http://localhost:3000/invitations/<%= @user.confirmation_token %>/<%= @user.id %>" target="_blank">http://localhost:3000/invitations/<%= @user.confirmation_token %>/<%= @user.id %></a></p>
+
+<p style="font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.3em;text-align:left;"><strong>Have questions?</strong> Contact [Account Owner] at [account@owner.com]</p>

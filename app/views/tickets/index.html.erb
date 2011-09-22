@@ -1,0 +1,14 @@
+<div id="ticket_content_left">
+<% if @blank == 'blank slate' %>
+  <h1>Tickets</h1>
+  <p style="font-size:14pt;">It seems there are no tickets. You can create tickets by clicking in the <%= link_to 'New Ticket', new_ticket_path %> link below.</p>
+<% else %>
+  <%= render 'all_tickets' %>
+<% end %>
+
+<br />
+
+<%= link_to 'New Ticket', new_ticket_path %>
+</div>
+
+<%= render 'browse_tickets' %>

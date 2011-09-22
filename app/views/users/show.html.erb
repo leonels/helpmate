@@ -1,0 +1,49 @@
+<h1><%= @user.full_name %></h1>
+
+<span style="background-color:blue;color:white;font-weight:bold;padding:1px 3px 0 3px;text-transform:uppercase;"><%= @user.role.name %></span><br />
+
+<% unless @user.title.nil? %>
+  <b>Title:</b> <%= @user.title %><br />
+<% end %>
+
+<b>Email:</b> <%= mail_to @user.email %>
+
+<p>
+  <b>Company Info</b><br />
+  <%= @user.company.name %><br />
+  
+  <% unless @user.company.address_one.empty? %>
+    <%= @user.company.address_one %><br />
+  <% end %>
+
+  <% unless @user.company.address_two.empty? %>
+    <%= @user.company.address_two %><br />
+  <% end %>
+
+  <% unless @user.company.city.empty? %>
+    <%= @user.company.city %>
+  <% end %>
+
+  <% unless @user.company.state.empty? %>
+    <%= @user.company.state %>
+  <% end %>
+  
+  <% unless @user.company.zipcode.empty? %>
+    <%= @user.company.zipcode%>
+  <% end %>
+    
+  <br />
+  
+  <% unless @user.company.web_address.empty? %>
+    <%= @user.company.web_address %><br />
+  <% end %>
+  
+  <% unless @user.company.phone_number_office.empty? %>  
+    <%= @user.company.phone_number_office %><br />
+  <% end %>
+
+  <% unless @user.company.phone_number_fax.empty? %>
+    <%= @user.company.phone_number_fax %>
+  <% end %>
+</p>
+

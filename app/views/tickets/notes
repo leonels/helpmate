@@ -1,0 +1,7 @@
+  <br />Price on order: <%= f.object[:price] %>
+  <br />Original price: 
+  
+  <% part_id =  @ticket.orders[0][:part_id] %>
+  <%= debug @parts[part_id][:cost] %>
+  
+

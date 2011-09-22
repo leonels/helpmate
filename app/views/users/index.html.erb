@@ -1,0 +1,78 @@
+<h1 style="background-color:#EDF5FF;padding:8px 8px 12px 3px;">People</h1>
+
+<% if can? :create, Company %>
+  <div style="background-color:#f1f1f1;padding:3px;">[ <%= link_to 'Add a new company', new_company_path  %> ] (You can add people to it next)</div>
+<% end %>
+
+
+<% @companies.each do |company| %>
+<div class="company">
+  <h2><%= company.name %></h2>
+
+  <% if can? :create, User %>
+    <div>[ <%= link_to 'Add a new person', new_company_user_path(company)  %> ]</div>
+  <% end %>
+  
+  <div class="div_user">
+    <span class="span_name">
+    <% if can? :update, company %>
+      <%= link_to company.name, edit_company_path(company) %>
+    <% else can? :show, company %>
+      <%= link_to company.name, company_path(company) %>
+    <% end %>
+    </span>
+    
+    <span class="span_title"><%= company.address_one %></span>
+    <span class="span_email"><%= company.address_two %></span>
+    <span class="span_title"><%= company.city %> <%= company.state %> <%= company.zipcode %></span>
+    <span class="span_title"><%= company.phone_number_office %></span>
+    <span class="span_title"><%= company.phone_number_fax %></span>
+    <span class="span_title"><%= company.web_address %></span>
+
+    <span class="span_user_controls">
+    <% if can? :update, company %>
+      <%= link_to 'Edit', edit_company_path(company), :class => 'edit' %>
+    <% end %>
+    </span>
+
+  </div>
+
+  <% @users = User.all(:order => 'first_name', :conditions => ["company_id == ?", company.id]) %>
+  <% @users.each do |user| %>
+  <%
+    if user.first_name.nil? or user.last_name.nil?
+      user_link = link_to 'User Details', user, :class=>'first_and_last_name'
+    else
+      user_link = link_to user.first_name + ' ' + user.last_name, user, :class=>'first_and_last_name'
+    end                                  
+  %>
+  <% user_name = user.first_name.to_s + ' ' + user.last_name.to_s %>
+  <div class="div_user">
+    <% if can? :update, user %>
+      <span class="span_name"><%= link_to user_name, edit_user_path(user) %></span>
+    <% elsif can? :show, user %>
+      <span class="span_name"><%= link_to user_name, user_path(user) %></span>
+    <% end %>
+    
+    <% if can? :show, user %>
+      <span class="span_title"><%= user.title %></span>
+      <span class="span_email"><%= mail_to user.email %></span>
+      
+      <% if user.user_state == "invited" %>
+      <span class="span_email">[<%= user.user_state %>]</span>
+      <% end %>
+      
+      <!-- <span class="span_role"><%= user.role.name %></span> -->
+    <% end %>
+    
+     <span class="span_user_controls">
+    <% if can? :update, user %>
+      <%= link_to 'Edit', edit_user_path(user), :class => 'edit' %>
+    <% end %>
+    </span>
+  </div>
+  <% end %>
+  <div style="clear:both;"> </div>
+</div>
+<% end %>
+

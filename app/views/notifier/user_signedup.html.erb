@@ -1,0 +1,19 @@
+<h1>Welcome to Helpmate</h1>
+
+<p>Hi <%= @account_data.companies[0].users[0].first_name %>,<br />
+Welcome to Helpmate and thanks for signing up!</p>
+
+<p>
+<span style="font-weight:bold;clear:both;color:#c33;margin:15px 0;">Important account information</span><br />
+<b>Sign in to your account:</b><br />
+<%= link_to 'Sign in here', log_in_url %>
+</p>
+
+<p>
+Username:<br />
+<b><%= @account_data.companies[0].users[0].username %></b>
+</p>
+
+<p>Wishing you the best success,</p>
+
+<p>The Team at <a href="http://helpmateapp.com">Helpmate Support Ticket System</a></p>

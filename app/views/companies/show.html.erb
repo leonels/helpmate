@@ -1,0 +1,19 @@
+<div id="company_details">
+  <div id="company_name"><h1><%= @company.name %></h1></div>
+  <div>
+    <span><%= @company.address_one %></span>
+    <span><%= @company.address_two %></span>
+  </div>
+  <div>
+    <span><%= @company.city %></span>
+    <span><%= @company.state %></span>
+    <span><%= @company.zipcode %></span>
+  </div>
+  <div>O: <%= @company.phone_number_office %></div>
+  <div>F: <%= @company.phone_number_fax %></div>
+  <div><%= @company.web_address %></div>
+</div>
+
+  <% if can? :update, @company %>
+  <%= link_to 'Edit', edit_company_path(@company) %>
+  <% end %>

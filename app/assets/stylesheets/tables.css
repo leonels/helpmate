@@ -1,0 +1,27 @@
+table#tickets{
+	border:1px solid #CCC;
+	border-collapse:collapse;
+	width:100%;
+}
+
+table#tickets tr.odd{
+	background-color:#edf5ff;
+}
+
+table#tickets tr:hover{
+  background-color:#ddf4ff;
+}
+
+table#tickets th, table#tickets td{
+	padding:5px;
+	text-align:left;
+}
+
+table#tickets th{
+	background-color:#F1F1F1;
+}
+
+table#tickets td{
+	color:#333;
+	/* cursor:pointer; */
+}

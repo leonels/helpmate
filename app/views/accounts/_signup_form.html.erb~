@@ -1,0 +1,88 @@
+<%= form_for @account do |account_form| %>
+
+  <table id="signup">
+  
+  <% account_form.fields_for :companies do |company_form| %>
+  <tr>
+    <td class="label" style="padding-bottom:20px;">
+      <%= company_form.label :name, 'Company' %>
+    </td>
+    <td>
+      <%= company_form.text_field :name %>
+      <% unless @account.errors["companies.name"][0] == nil %>
+			  Company name <%= @account.errors["companies.name"][0] %>
+			<% end %>
+      <br />
+      <span class="hint">(Or non-profit, organization, group, school, etc.)</span>
+    </td>
+  </tr>
+  
+  <% company_form.fields_for :users do |user_form| %>
+	<tr>
+	  <td class="label">
+			<%= user_form.label :first_name %>
+	  </td>
+	  <td>
+			<%= user_form.text_field :first_name %>
+			<% unless @account.errors["companies.users.first_name"][0] == nil %>
+			  First name <%= @account.errors["companies.users.first_name"][0] %>
+			<% end %>
+		</td>
+  </tr>
+	
+	<tr>
+	  <td class="label">
+			<%= user_form.label :last_name %>
+	  </td>
+	  <td>
+			<%= user_form.text_field :last_name %>
+			<% unless @account.errors["companies.users.last_name"][0] == nil %>
+			  Last name <%= @account.errors["companies.users.last_name"][0] %>
+			<% end %>
+		</td>
+  </tr>
+		
+  <tr>
+	  <td class="label">
+  	  <%= user_form.label :email %>
+		</td>
+		<td>
+			<%= user_form.text_field :email %>
+			<% unless @account.errors["companies.users.email"][0] == nil %>
+			  Email <%= @account.errors["companies.users.email"][0] %>
+			<% end %>
+		</td>
+  </tr>
+  </table>
+  
+  <fieldset>
+    <legend>Choose a username & password</legend>  
+	      <p><%= user_form.label :username %><br />
+	      <%= user_form.text_field :username %>
+	      <% unless @account.errors["companies.users.username"][0] == nil %>
+			  Username <%= @account.errors["companies.users.username"][0] %>
+			<% end %>
+	      <br />
+	      <span class="hint">This is what you'll use to sign in.</span></p>
+				<p><%= user_form.label :password %><br />
+				<%= user_form.password_field :password %>
+				<% unless @account.errors["companies.users.password"][0] == nil %>
+			  Password <%= @account.errors["companies.users.password"][0] %>
+			<% end %>
+				<br />
+				<span class="hint">6 to 20 characters.</span></p>
+				<p><%= user_form.label :password_confirmation, 'Enter your password again for verification' %><br />
+				<%= user_form.password_field :password_confirmation %></p>
+  </fieldset>
+  
+	<% end # fields_for :users %>
+  <% end # fields for :companies %>
+  
+  <p>By clicking <b>Create my account</b> you agree to the <a href="">Terms of Service</a>, <a href="">Privacy</a>, and <a href="">Refund policies</a>.</p>
+  
+  <div class="actions">
+    <%= account_form.submit 'Create my account' %>
+  </div>
+      
+  <% end %>
+

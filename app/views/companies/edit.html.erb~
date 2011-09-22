@@ -1,0 +1,12 @@
+<h1>Editing <%= @company.name %></h1>
+
+<%= render 'form' %>
+
+<% if can? :destroy, @company %>
+  <div style="background-color:#CCC;float:right;padding:5px;">
+    <%= link_to 'Delete this company', pre_delete_company_path, :class => "delete" %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @company %> |
+<%= link_to 'Back', companies_path %>

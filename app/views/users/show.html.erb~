@@ -1,0 +1,9 @@
+<h1><%= @user.full_name %></h1>
+
+<span style="background-color:blue;color:white;font-weight:bold;padding:1px 3px 0 3px;text-transform:uppercase;"><%= @user.role.name %></span><br />
+
+<% unless @user.title.nil? %>
+  <b>Title:</b> <%= @user.title %><br />
+<% end %>
+
+<b>Email:</b> <%= mail_to @user.email %>

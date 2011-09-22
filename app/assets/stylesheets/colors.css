@@ -1,0 +1,38 @@
+#container{
+  background-color:#fff;
+}
+
+h1#app_title{
+  color:white;
+}
+
+ul#account_navigation li {
+	color:white;
+}
+
+ul#account_navigation li a{
+  /* color:#42577b; */
+  color:white;
+}
+
+ul#account_navigation li a:hover{
+  /* background-color:#253966; */
+  /* color:#d6fff8; */
+  background-color:#1d64ad;
+  color:white;
+}
+
+div#header_container{
+  background-color:#036;
+}
+
+ul#main_navigation li a{
+  background-color:#1a4f85;
+  color:#fff;
+}
+
+ul#main_navigation li a:hover{
+	background-color:#1d64ad;
+  /* color:#d6fff8; */
+}
+

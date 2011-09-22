@@ -1,0 +1,28 @@
+<style>
+input[type="text"], input[type="password"]{
+	font-size:18px;
+	padding:3px;
+	width:200px;
+}
+</style>
+
+<h1 style="font-size:16px;font-weight:normal;line-height:19px;display:block;text-align:left;">
+  <strong style="font-size:18px;">Can't sign in? Forget your password?</strong>
+</h1>
+
+<p>Enter your email address below and we'll send you password reset instructions.</p>
+
+<%= form_tag password_resets_path, :method => :post do %>
+  <p>
+    <b><%= label_tag :email, 'Enter your email address' %></b><br />
+    <%= text_field_tag :email  %>
+  </p>
+<p class="button"><%= submit_tag 'Send me reset instructions', :disable_with => "Processing..."  %></p>
+
+<div style="font-size:12px;color:#666;margin:0;">
+<p><strong>A note about spam filters</strong><br />
+If you don't get an email from us within a few minutes please be sure to check your spam filter. <strong>The email will be coming from [do-not-reply@domain.com].</strong>
+</p>
+</div>
+
+<% end %>

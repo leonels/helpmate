@@ -1,0 +1,80 @@
+<div id="user_content_left">
+
+<div style="background-color:#edf3fe;padding:3px 5px 2px 8px;">
+<% if current_user.id == @user.id %>
+  <h1 style="font-size:16px;">Edit your personal information</h1>
+<% elsif %>
+  <h1>Edit <%= @user.first_name + ' ' + @user.last_name %></h1>
+<% end %>
+</div>
+
+<div style="border:1px solid #CCC;margin:20px 10px 15px 10px;padding:10px;width:500px;">
+<h2 style="font-size:14px;font-weight:bold;margin:0 0 3px 0;padding:0;">Need to find <%= @user.first_name %>'s password?</h2>
+<p style="margin:0;">Each person's password is private to them, but you can <%= link_to 'email ' + @user.full_name + ' instructions to choose a new password', edit_password_change_path %>.</p>
+</div>
+
+<% if @user.user_state == 'invited' %>
+<div style="border:1px solid #CCC;margin:5px;padding:7px;">
+<h3>Can I resend <%= @user.first_name %>'s invitation email?</h3>
+<p>Yes. You can <%= link_to 're-send the email invitation', pre_resend_invitation_path %> 
+if it went to the wrong email address or <%= @user.first_name %> didn't receive it. 
+The last invitation was sent on <%= @user.invitation_last_sent_at.strftime("%B %e, %Y") %></p>
+</div>
+<% end %>
+
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+    
+  <div class="actions">
+    <%= f.submit 'Save changes', :disable_with => "Processing..." %>
+  </div>
+<% end %>
+
+  <div class="field">
+  Company:  <%= @user.company.name %>
+  </div>
+
+
+<%= link_to 'Back', users_path %>
+
+</div><!-- user_content_left ends -->
+
+<div id="user_content_right">
+<% if can? :destroy, @user %>
+<h2>Delete this person?</h2>
+<p>
+This will permanently remove <%= @user.first_name %> from your Genesis account.
+Don't worry, their tickets, blah and blah will not be erased.<br />
+<%= link_to 'Delete ' + @user.first_name + ' now', @user, :class => 'delete', :confirm => 'Are you sure you want to delete ' + @user.first_name + ' ' + @user.last_name + '? Note: There is no undo.', :method => :delete %>
+</p>
+<% end %>
+</div>

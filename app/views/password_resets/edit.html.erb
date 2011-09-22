@@ -1,0 +1,33 @@
+<h1>Reset your Helpmate password</h1>
+
+<p>Hi <%= @user.first_name %>,</p>
+
+<p>Please use the form below to set a new password.</p>
+
+<p>Your username: <b><%= @user.username %></b></p>
+
+<%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+      <% for message in @user.errors.full_messages %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+      
+  <div class="field">
+    <b><%= f.label :password %></b><br />
+    <%= f.password_field :password %><br />
+    <span class="hint">6 to 20 characters.</span>
+  </div>
+      
+  <div class="field">
+    <b><%= f.label :password_confirmation %></b><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+ 
+  <div class="actions"><%= f.submit "Reset my password", :disable_with => "Processing..."  %></div>
+<% end %>

@@ -1,0 +1,52 @@
+<%= render 'requester_info' %>
+
+<h1>
+  Ticket #<%= @ticket.id %>
+</h1>
+
+<p>
+  Requester: <%= @ticket.requestor.abbreviated_name %> | Created at: <%= @ticket.created_at.strftime("%B %d, %Y at %I:%M%P") %>
+</p>
+
+<p>
+  Subject<br />
+  <span style="font-size:1.5em;"><%= @ticket.subject %></span>
+</p>
+
+Description
+<p style="background-color:#F1F1F1;border:1px solid #CCC;margin-top:5px;padding:10px;width:700px;">
+  <%= @ticket.description %>
+</p>
+
+<% unless @ticket.solution.blank? %>
+<p>
+  <b>Solution:</b>
+  <%= @ticket.solution %>
+</p>
+<% end %>
+
+<p><b>Ticket status:</b> <%= @ticket.ticket_status.label %></p>
+
+<% unless @orders.empty? %>
+
+  <table style="background-color:#f1f1f1;">
+    <tr><th colspan="3" style="font-size:2em;">Parts</th></tr>
+    <tr><th style="text-align:left;">Name</th><th>Cost</th><th>Price</th></tr>
+      <% @orders.each do |order| %>
+        <% part = Part.find(order.part_id) %>
+        <tr>
+          <td><%= part.name %></td>
+          <td><%= number_to_currency(part.cost) %></td>
+          <td><%= number_to_currency(order.price) %></td>
+        </tr>
+      <% end %>
+  </table>
+<% end %>
+
+<% unless @ticket.solver_id.nil? %>
+  <p><b>Solver:</b> <%= @ticket.solver.first_name %> <%= @ticket.solver.last_name %></p>
+<% end %>
+  
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>
+

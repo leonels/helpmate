@@ -1,0 +1,58 @@
+<%= form_for @account do |account_form| %>
+
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% account_form.fields_for :users do |user_form| %>
+		<p>
+			<%= user_form.label :first_name %> <%= user_form.text_field :first_name %>
+		</p>
+	
+			<p>
+			<%= user_form.label :last_name %> <%= user_form.text_field :last_name %>
+		</p>
+		
+    <p>
+				<%= user_form.label :email %>
+				<%= user_form.text_field :email %>
+		</p>
+			
+		<p>
+			<%= user_form.label :username %><br />
+			<%= user_form.text_field :username %><br />
+			This is what you'll use to sign in.
+		</p>
+  	
+		<p>
+			<%= user_form.label :password %><br />
+			<%= user_form.password_field :password %><br />
+			6 to 20 characters.
+		</p>
+		
+		<p>
+			<%= user_form.label :password_confirmation, 'Enter your password again for verification' %><br />
+			<%= user_form.password_field :password_confirmation %><br />
+		</p>
+  <% end %>
+  
+  <p>
+    <% account_form.fields_for :companies do |company_form| %>
+      <%= company_form.label :name, 'Company name' %>
+      <%= company_form.text_field :name %>
+      (Or non-profit, organization, group, school, etc.)
+    <% end %>
+  </p>
+  
+  <div class="actions">
+    <%= account_form.submit %>
+  </div>
+<% end %>

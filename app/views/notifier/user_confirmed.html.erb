@@ -1,0 +1,24 @@
+<p style="font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.3em;text-align:left;"><%= @user.company.name %></p>
+
+<h1 style="color:#222;font-family: Helvetica, Arial, sans-serif;font-size:22px;line-height:normal;">Thanks for creating an account.</h1>
+
+<p style="font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.3em;text-align:left;">
+You're all set. You'll find your username and a link to sign in below.
+</p>
+
+<p style="font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.3em;text-align:left;">
+<b>Your new username is:</b><br />
+<%= @user.username %>
+</p>
+
+<p style="font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.3em;text-align:left;">
+<b>Access your Helpmate account now:</b><br />
+<%= link_to "http://helpmateapp.com" + log_in_path, "http://helpmateapp.com" + log_in_path %>
+</p>
+
+-The team at Creativo Development
+<a href="http://creativodev.com">http://creativodev.com</a>
+
+<p style="font-family:Helvetica,Arial,sans-serif;font-size:13px;line-height:1.3em;text-align:left;">
+<strong>Have questions?</strong> Contact [Account Owner] -your account administrator- at [account@owner.com]
+</p>

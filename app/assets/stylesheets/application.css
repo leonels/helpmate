@@ -1,0 +1,328 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+body{
+  background-color:#ccc;
+  /* background-image:url("/images/bg.png"); */
+  /* font-family: 'Lucida Grande', 'Lucida Sans', 'Segoe UI', 'Myriad Pro', Tahoma, Verdana, Arial, sans-serif; */
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+  font-size:9pt;
+  margin:0;
+  padding:0;
+}
+
+a{color:#06C;}
+a:visited{color:#06C;}
+a:hover{color:#09F;}
+
+h1, h2{
+  margin-bottom:5px;
+  padding-bottom:5px;
+  font-weight:normal;
+}
+
+h1{
+	font-size:20pt;
+}
+
+p#alert{
+  background-color:#fcc;
+  border:1px solid #c00;
+  color:#c00;
+  padding:5px;
+}
+
+p#notice{
+  background-color:#ccffcc;
+  border:1px solid #66cc66;
+  padding:5px;
+}
+
+table#signup{
+	border-collapse:separate;
+	border-spacing:2px;
+	width:600px;
+}
+
+table#signup td.label{
+	text-align:left;
+	width:70px;
+}
+
+table#signup td{
+	text-align:left;
+}
+
+table#signup td input, fieldset input{
+	font-size:16px;
+	font-weight:bold;
+	padding:3px;
+}
+
+span.hint{
+	color:#999;
+	font-size:11px;
+}
+
+div#offer_to_sign_in{
+	background-color:#FFC;
+	border:1px solid #CCC;
+	padding:10px 15px 10px 15px;
+	margin:5px 0 15px 0;
+}
+
+fieldset{
+	border-top:1px solid #CCC;
+	border-right:none;
+	border-bottom:none;
+	border-left:none;
+	padding:0 0 5px 15px;
+	margin:10px 0 0 0;
+	text-align:left;
+}
+
+legend{
+	font-weight:bold;
+	color:black;
+	padding:7px;
+}
+
+#table_clients, #table_services, #table_appointments{
+  background-color:white;
+  border-collapse:collapse;
+  width:100%;
+}
+
+#table_appointments{
+  border-bottom:1px solid #ccc;
+}
+
+#table_appointments em{
+  font-size:8pt;
+}
+
+#table_clients, #table_services{
+  border-bottom:2px solid #ccc;
+  border-top:2px solid #ccc;
+}
+
+#table_appointments col#edit, #table_appointments col#destroy{
+  width:50px;
+}
+
+#table_clients col#edit, #table_clients col#destroy{
+  width:50px;
+}
+
+/*
+#table_services col#name{
+  width:350px;
+}
+*/
+#table_services td.duration, #table_services td.cost{
+  text-align:right;
+  vertical-align:middle;
+}
+
+#table_services td.edit, #table_services td.destroy{
+  vertical-align:middle;
+}
+
+#table_services col#duration{
+  width:80px;
+}
+
+#table_services col#cost{
+  width:60px;
+}
+
+#table_appointments col#edit, #table_appointments col#destroy{
+  width:50px;
+}
+
+#table_clients th, #table_services th, #table_appointments th{
+  background-color:#ccc;
+  padding:5px;
+  text-align:left;
+}
+
+#table_services span.description{
+  font-size:11px;
+}
+
+#table_clients td, #table_services td, #table_appointments td{
+  font-family: 'Lucida Sans', 'Segoe UI', 'Myriad Pro', Tahoma, Verdana, Arial, sans-serif;
+  padding:5px;
+  vertical-align:top;
+}
+
+/*
+#table_clients tr:hover, #table_services tr:hover, #table_appointments tr:hover{
+  background-color:#d0ef9f;
+  cursor:pointer;
+}
+*/
+
+#table_appointments td.td_date{
+  border-bottom:1px solid #ccc;
+  font-size:1.2em;
+  font-weight:bold;
+  padding:25px 0 5px 0;
+  vertical-align:top;
+}
+
+#table_appointments td.td_time{
+  padding-right:20px;
+  text-align:right;
+  width:70px;
+}
+
+.entry{
+  margin:15px 10px 15px 0;
+}
+
+.list_line_even{
+  /* background-color:#eff5fc; */
+}
+
+.list_line_odd{
+  background-color:#f1f1f1;
+}
+
+div#company_details{
+  margin:5px 20px 10px 0;
+  padding:5px 5px 5px 0;
+}
+
+div#company_details div{
+  text-align:left;
+  clear:both;
+}
+
+div#company_details div span{
+  float:left;
+  padding-left:3px;
+}
+
+div#company_name{
+  font-weight:bold;
+}
+
+/* users */
+/*
+table#table_users a.first_and_last_name{
+  color:#333;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+table#table_users td span{
+  clear:both;
+  float:left;
+}
+*/
+div.div_user{
+  float:left;
+  padding:10px 5px 10px 0;
+  width:32%;
+}
+
+span.span_name{
+  float:left;
+  clear:both;
+  font-size:1.2em;
+  font-weight:bold;
+}
+
+span.span_name a{
+  color:#333;
+}
+
+span.span_name a:hover{
+  background-color:white;
+}
+
+span.span_title{
+  float:left;
+  clear:both;
+}
+
+span.span_email{
+  float:left;
+  clear:both;
+}
+
+span.span_role{
+  background-color:#008000;
+  clear:both;
+  color:white;
+  float:left;
+  font-size:8pt;
+  font-weight:bold;
+  padding:1px 3px 0 3px;
+  text-transform:uppercase;
+}
+
+span.span_user_controls{
+  float:left;
+  clear:both;
+}
+
+div.company{
+	margin:0 0 20px 0;
+	overflow:hidden;
+}
+
+div.company h2{
+	background-color:#E9E9E9;
+	border-bottom:0;
+	color:#333;
+	font-size:16px;
+	font-weight:bold;
+	margin:3px 0;	
+	padding:5px 10px;
+}
+
+a.delete, a.cancel, a.edit{
+	color:red;
+}
+
+a.delete:hover{
+	background-color:red;
+	color:white;
+}
+
+span.open, span.solved{
+	padding:2px 6px 2px 4px;
+}
+
+span.open{
+	background-color:#FFCCCC;
+}
+
+span.solved{
+	background-color:#6C6;
+}
+
+p.description{
+  background-color:#F1F1F1;
+  /* border:1px solid #CCC; */
+  font-size:14pt;
+  line-height:1.2em;
+  margin-top:1px;
+  padding:10px;
+  width:700px;"
+}
+
+div.description{
+	margin-top:20px;
+}
+
+span.ticket_number, span.requester, span.created{
+	color:#333;
+}

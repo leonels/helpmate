@@ -1,0 +1,15 @@
+<div style="background-color:#D0E799;border-bottom:1px solid #CCC;height:34px;padding:20px 0 0 20px;">
+  <h2 style="margin:0;font-size:16px;font-weight:bold;line-height:22px;">You're just a few seconds away from your  new account.</h2>
+</div>
+
+<div id="content" style="padding:20px;">
+  
+<div id="offer_to_sign_in">
+  <p><b>Already have an account?</b> <%= link_to 'Sign in here', log_in_path %> to skip this form and use the username you already have.</p>
+</div>
+
+<h3 style="color:#376D00">Sign up</h3>
+
+<%= render 'signup_form' %>
+
+</div>

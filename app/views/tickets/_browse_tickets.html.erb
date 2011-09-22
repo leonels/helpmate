@@ -1,0 +1,14 @@
+<div id="ticket_content_right">
+<h2>Browse Tickets</h2>
+<ul>
+  <% unless current_user.role.name == 'customer' %>
+  <li><a href="/assigned">Assigned to me (<%= @tickets_assigned_count %>)</a></li>
+  <% end %>
+  <li><a href="/tickets">All (<%= @tickets_count %>)</a></li>
+  <li><a href="/open">Open (<%= @tickets_open_count %>)</a></li>
+  <li><a href="/solved">Solved (<%= @tickets_solved_count %>)</a></li>
+  <% unless current_user.role.name == 'customer' %>
+  <li><a href="/unassigned">Unassigned (<%= @tickets_unassigned_count %>)</a></li>
+  <% end %>
+</ul>
+</div>

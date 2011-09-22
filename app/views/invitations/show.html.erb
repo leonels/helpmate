@@ -1,0 +1,70 @@
+<style>
+label{
+	font-size:14px;
+	color:black;
+	font-weight:bold;
+}
+
+input[type="text"], input[type="password"]{
+	font-size:16px;
+	font-weight:bold;
+	padding:3px;
+	width:200px;
+}
+
+input[type="submit"]{
+	font-weight:normal;
+	font-size:16px;
+	padding:3px;
+}
+</style>
+
+<h1 style="font-size:20px;margin-top:15px;line-height:1.4em;">Hi, <%= @user.first_name %>.</h1>
+
+<p style="font-size:14px;color:#333;">
+Account Owner just set up an account for you on Helpmate. All you need to do is choose a username and password.
+</p>
+
+  <div style="border-left:1px dotted #CCC;padding-left:20px;margin-left:12px;float:right;width:250px;margin-top:-20px;margin-bottom:20px;display:block;text-align:left;">
+		<p style="font-size:13px;font-weight:bold;">Already have a Helpmate account?</p>
+		
+		<p style="color:#666;">
+		<%= link_to 'Sign in', log_in_path %> with the username you already have.
+		</p>
+  </div>
+
+
+  <%= form_for @user, :url => activate_invitation_path(@user), :action => "activate" do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="field">
+  <%= f.label :password %><br />
+  <%= f.password_field :password %><br />
+  <span class="hint">6 to 20 characters.</span>
+  </div>
+  
+  <div class="field">
+  <%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit 'Create your account' %>
+  </div>
+  
+<% end %>

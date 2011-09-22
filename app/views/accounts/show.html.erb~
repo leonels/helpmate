@@ -1,0 +1,15 @@
+<p>
+  Account number: <%= @account.id %>
+</p>
+
+<p>
+  Account opened on: <%= @account.created_at.strftime("%B %d, %Y") %>
+</p>
+
+<h3>Need to cancel your account?</h3>
+<p>We'll be sorry to see you go. <strong>Once your account is cancelled, all your information will immediately and permanently be deleted.</strong></p>
+
+<p><%= link_to 'Please cancel my account', pre_cancel_account_path %></p>
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>

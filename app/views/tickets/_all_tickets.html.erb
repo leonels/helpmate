@@ -1,0 +1,51 @@
+<h1>All tickets</h1>
+
+<% if @tickets.count == 0 %>
+
+<p>No tickets found for this view.</p>
+
+<% else %>
+
+<table id="tickets">
+  <tr>
+    <th>#</th>
+    <th>Subject</th>
+    <th>Status</th>
+    <th>Requester</th>
+    <th>Created at</th>
+    <th></th>
+  </tr>
+
+<% @tickets.each do |ticket| %>
+  <tr class="<%= cycle("even", "odd") %>" >
+    <td><%= ticket.number %></td>
+    
+    
+    <% if can? :update, ticket %>
+      <td><%= link_to ticket.subject, edit_ticket_path(ticket) %></td>
+    <% elsif can? :show, ticket %>
+      <td>
+        <%= link_to ticket.subject, ticket %>
+      </td>
+    <% end %>
+    
+
+    <td>
+      <% if ticket.ticket_status_id == 1 %>
+        <span class="open"><%= ticket.ticket_status.label %></span>
+      <% elsif ticket.ticket_status_id == 2 %>
+        <span class="solved"><%= ticket.ticket_status.label %></span>
+      <% end %>
+      </td>
+    <td><%= ticket.requestor.abbreviated_name %></td>
+    <td><%= ticket.date_created_at %></td>
+    <td>
+      <% if can? :destroy, ticket %>
+        <%= link_to 'Delete', ticket, :confirm => 'Are you sure?', :method => :delete %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<% end %>

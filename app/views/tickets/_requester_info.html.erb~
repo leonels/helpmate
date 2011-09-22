@@ -1,0 +1,51 @@
+<div id="requester_info">
+
+<h2><%= @ticket.requestor.full_name %></h2>
+
+<p>
+  <b>Requestor:</b> <%= @ticket.requestor.full_name %><br />
+  <% unless @ticket.requestor.title.blank? %>
+    <b>Title: </b> <%= @ticket.requestor.title %><br />
+  <% end %>
+  <b>Email: </b> <%= mail_to @ticket.requestor.email %>
+</p>
+
+<p>
+  <b>Company Info</b><br />
+  <%= @ticket.requestor.company.name %><br />
+  
+  <% unless @ticket.requestor.company.address_one.blank? %>
+    <%= @ticket.requestor.company.address_one %><br />
+  <% end %>
+
+  <% unless @ticket.requestor.company.address_two.blank? %>
+    <%= @ticket.requestor.company.address_two %><br />
+  <% end %>
+
+  <% unless @ticket.requestor.company.city.blank? %>
+    <%= @ticket.requestor.company.city %>
+  <% end %>
+
+  <% unless @ticket.requestor.company.state.blank? %>
+    <%= @ticket.requestor.company.state %>
+  <% end %>
+  
+  <% unless @ticket.requestor.company.zipcode.blank? %>
+    <%= @ticket.requestor.company.zipcode%>
+  <% end %>
+    
+  <br />
+  
+  <% unless @ticket.requestor.company.web_address.blank? %>
+    <%= @ticket.requestor.company.web_address %><br />
+  <% end %>
+  
+  <% unless @ticket.requestor.company.phone_number_office.blank? %>  
+    <%= @ticket.requestor.company.phone_number_office %><br />
+  <% end %>
+
+  <% unless @ticket.requestor.company.phone_number_fax.blank? %>
+    <%= @ticket.requestor.company.phone_number_fax %>
+  <% end %>
+</p>
+</div>

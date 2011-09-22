@@ -1,0 +1,14 @@
+<h2>Are you sure you want to cancel your Genesis account?</h2>
+
+<p>We'll be sorry to see you go, but thanks for trying Genesis.</p>
+
+<p>
+<strong>
+Once your account is cancelled, all of the information in your account will be permanently deleted. This can not be reversed.
+</strong>
+</p>
+
+<hr />
+
+
+<span style="background-color:#F1F1F1;border:1px solid #CCCa; font-size:1.2em;padding:3px;"><%= link_to 'Cancel my account', @account, :method => :delete %></span> or <%= link_to 'Please do not cancel my account', root_url, :class => 'delete' %>

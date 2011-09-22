@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= "#{Rails.application.class.parent_name}" %></title>
+  <%= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tag %>
+</head>
+<body id="<%= params[:controller] %>">
+
+<div id="container_login">
+
+  <% if alert %>
+  <p id="alert"><%= alert %></p>
+  <% end %>
+
+  <% if notice %>
+  <p id="notice"><%= notice %></p>
+  <% end %>
+  
+  <%= yield %>
+  
+</div>
+
+<div style="font-size:12px;margin:0 auto;padding:15px 5px;text-align:center;width:300px;">
+<% if params[:controller] == "sessions" and params[:action] == "new" %>
+<strong>Help:</strong> <%= link_to "I can't sign in or I forgot my username/password", new_password_reset_path %>
+<% elsif params[:controller] == "sessions" and params[:action] == "forgot_password" %>
+Nevermind, <%= link_to "send me back to the sign-in screen", log_in_path %>
+<% end %>
+</div>
+
+<div style="background-color:#E5E5E5;position:absolute;bottom:0;left:0;text-align:center;width:100%;margin:0;padding:0;">
+  <div style="display:block;padding:10px 30px;margin:0 auto;font-size:12px;line-height:15px;color:#444;">
+    Don't have a <%= "#{Rails.application.class.parent_name}" %> account? <%= link_to 'Sign up today', sign_up_path %>.
+  </div>
+</div>
+
+</body>
+</html>
