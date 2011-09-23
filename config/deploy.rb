@@ -1,5 +1,5 @@
 set :application, "helpmate"
-set :repository,  "tallercreativo@ubuntu:git/helpmate.git"
+set :repository,  "git@github.com:leonels/helpmate.git"
 
 set :scm, :git
 
