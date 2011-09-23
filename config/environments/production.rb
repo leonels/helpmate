@@ -21,6 +21,9 @@ Helpmate::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  # added by me
+  config.logger = Logger.new(config.paths.log.first, 'daily')
+
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
