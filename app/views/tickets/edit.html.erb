@@ -39,7 +39,7 @@
 
     <% @requestors = [] %>
     <% @companies.each do |company| %>
-      <% @users_add = User.all(:order => 'first_name', :conditions => ["company_id == ?", company.id]) %>
+      <% @users_add = User.all(:order => 'first_name', :conditions => ["company_id = ?", company.id]) %>
       <% @requestors = @requestors + @users_add %>
     <% end %>
     <div class="field" style="float:left;margin-right:10px;width:auto;">

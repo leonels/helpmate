@@ -5,9 +5,9 @@ class UsersController < ApplicationController
 	def index
 		# account owner or manager or agent
 		if current_user.role_id == 1 or current_user.role_id == 2 or current_user.role_id == 3
-			@companies = Company.all(:conditions => ["account_id == ?", current_user.company.account_id])
+			@companies = Company.all(:conditions => ["account_id = ?", current_user.company.account_id])
 		else
-			@companies = Company.all(:conditions => ["id == ? or id == ?", current_user.company_id, account_owner_company_id])
+			@companies = Company.all(:conditions => ["id = ? or id = ?", current_user.company_id, account_owner_company_id])
 		end
   end
 	

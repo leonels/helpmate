@@ -37,7 +37,7 @@
 
   </div>
 
-  <% @users = User.all(:order => 'first_name', :conditions => ["company_id == ?", company.id]) %>
+  <% @users = User.all(:order => 'first_name', :conditions => ["company_id = ?", company.id]) %>
   <% @users.each do |user| %>
   <%
     if user.first_name.nil? or user.last_name.nil?

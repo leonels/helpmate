@@ -17,13 +17,17 @@
   </tr>
 
 <% @tickets.each do |ticket| %>
+  <% if can? :show, ticket %>
+  
   <tr class="<%= cycle("even", "odd") %>" >
     <td><%= ticket.number %></td>
     
     
     <% if can? :update, ticket %>
-      <td><%= link_to ticket.subject, edit_ticket_path(ticket) %></td>
-    <% elsif can? :show, ticket %>
+      <td>
+        <%= link_to ticket.subject, edit_ticket_path(ticket) %>
+      </td>
+    <% else %>
       <td>
         <%= link_to ticket.subject, ticket %>
       </td>
@@ -45,6 +49,7 @@
       <% end %>
     </td>
   </tr>
+  <% end %>
 <% end %>
 </table>
 

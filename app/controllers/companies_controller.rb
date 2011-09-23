@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
 	load_and_authorize_resource
 
   def index
-    # @companies = Company.all(:conditions => ["account_id == ?", current_user.company.account_id])
+    # @companies = Company.all(:conditions => ["account_id = ?", current_user.company.account_id])
 
     respond_to do |format|
       format.html # index.html.erb

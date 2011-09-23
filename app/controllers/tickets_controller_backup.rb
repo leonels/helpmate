@@ -4,7 +4,7 @@ class TicketsController < ApplicationController
 	before_filter :tickets_count, :only => [:index, :open, :solved, :assigned, :unassigned]
 	
   def index
-    @tickets = Ticket.all(:conditions => ["account_id == ?", current_user.company.account_id], :order => "created_at DESC")
+    @tickets = Ticket.all(:conditions => ["account_id = ?", current_user.company.account_id], :order => "created_at DESC")
     # @tickets = Ticket.all(:order => 'created_at DESC')
     # @tickets = Ticket.accessible_by(current_ability, :order => 'created_at DESC')
     
@@ -19,25 +19,25 @@ class TicketsController < ApplicationController
   end
 
   def open
-    @tickets_open = Ticket.all(:order => "created_at DESC", :conditions => ["ticket_status_id == ?", 1])
+    @tickets_open = Ticket.all(:order => "created_at DESC", :conditions => ["ticket_status_id = ?", 1])
   end
   
   def solved
-    @tickets_solved = Ticket.all(:order => "created_at DESC", :conditions => ["ticket_status_id == ?", 2])
+    @tickets_solved = Ticket.all(:order => "created_at DESC", :conditions => ["ticket_status_id = ?", 2])
   end
   
   def assigned
-  	@tickets_assigned = Ticket.all(:order => "created_at DESC", :conditions => ["assignee_id == ? AND ticket_status_id == ?", current_user.id, 1])
+  	@tickets_assigned = Ticket.all(:order => "created_at DESC", :conditions => ["assignee_id = ? AND ticket_status_id = ?", current_user.id, 1])
   end
   
   def unassigned
-  	@tickets_unassigned = Ticket.find_all_by_assignee_id(nil, :order => "created_at DESC", :conditions => ["ticket_status_id == ?", 1])
+  	@tickets_unassigned = Ticket.find_all_by_assignee_id(nil, :order => "created_at DESC", :conditions => ["ticket_status_id = ?", 1])
   end
   
   def show
     @ticket = Ticket.find(params[:id])
 
-    @orders = Order.all(:conditions => ["ticket_id == ?", @ticket.id])
+    @orders = Order.all(:conditions => ["ticket_id = ?", @ticket.id])
     
     respond_to do |format|
       format.html # show.html.erb
@@ -123,16 +123,16 @@ class TicketsController < ApplicationController
   private
   def load_collections
   	@ticket_statuses = TicketStatus.all
-  	@assignees = User.all(:conditions => ["role_id == ? or role_id == ? or role_id == ?", 1,2,3 ])
+  	@assignees = User.all(:conditions => ["role_id = ? or role_id = ? or role_id = ?", 1,2,3 ])
   	@parts = Part.all
   end
   
   def tickets_count
   	@tickets_count = Ticket.all(:order => "created_at DESC").count
-  	@tickets_open_count = Ticket.all(:order => "created_at DESC", :conditions => ["ticket_status_id == ?", 1]).count
-    @tickets_solved_count = Ticket.all(:order => "created_at DESC", :conditions => ["ticket_status_id == ?", 2]).count
-  	@tickets_assigned_count = Ticket.all(:order => "created_at DESC", :conditions => ["assignee_id == ? AND ticket_status_id == ?", current_user.id, 1]).count
-  	@tickets_unassigned_count = Ticket.find_all_by_assignee_id(nil, :order => "created_at DESC", :conditions => ["ticket_status_id == ?", 1]).count
+  	@tickets_open_count = Ticket.all(:order => "created_at DESC", :conditions => ["ticket_status_id = ?", 1]).count
+    @tickets_solved_count = Ticket.all(:order => "created_at DESC", :conditions => ["ticket_status_id = ?", 2]).count
+  	@tickets_assigned_count = Ticket.all(:order => "created_at DESC", :conditions => ["assignee_id = ? AND ticket_status_id = ?", current_user.id, 1]).count
+  	@tickets_unassigned_count = Ticket.find_all_by_assignee_id(nil, :order => "created_at DESC", :conditions => ["ticket_status_id = ?", 1]).count
   end
   
 end
